@@ -1,0 +1,50 @@
+version: '2'
+services:
+  wordpress:
+    container_name: wordpress
+    build: 
+      context: "../docker-image"
+      dockerfile: Dockerfile
+    links:
+      - database:mysql
+    environment:
+      - WORDPRESS_DB_USER=wordpress
+      - WORDPRESS_DB_NAME=wordpress
+      - WORDPRESS_DB_PASSWORD=password
+      - WORDPRESS_DB_HOST=mysql
+      - MYSQL_PORT_3306_TCP=3306
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    working_dir: /var/www/html
+    volumes:
+      - ../wordpress:/var/www/html
+      - ./htaccess_dev:/var/www/html/.htaccess
+      - ./dev.ini:/usr/local/etc/php/conf.d/dev.ini
+  database:
+    container_name: mysql
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=wordpress
+      - MYSQL_PASSWORD=password
+    restart: unless-stopped
+    volumes:
+      - ../db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+      - PMA_USER=root
+      - PMA_PASSWORD=password
+    restart: always
+    ports:
+      - 8080:80
+    volumes:
+      - /sessions
