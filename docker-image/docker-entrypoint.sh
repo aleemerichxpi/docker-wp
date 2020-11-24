@@ -55,7 +55,7 @@ if [[ "$1" == apache2* ]] || [ "$1" == php-fpm ]; then
     fi
 fi
 
-# ! /usr/local/bin/wp-cli.phar cli update --yes
+! /usr/local/bin/wp-cli.phar cli update --yes
 
 # if [[ -v XDEBUG ]] && [ "$XDEBUG" = "true" ];
 # then
