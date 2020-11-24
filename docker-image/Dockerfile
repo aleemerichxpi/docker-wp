@@ -38,7 +38,7 @@ RUN cd /var/www; \
 RUN	echo 'alias phpcs="php /var/www/phpcs/bin/phpcs"' >> ~/.bashrc;
 RUN	php /var/www/phpcs/bin/phpcs --config-set installed_paths /var/www/phpcs,/var/www/analysis,/var/www/phpcsutils,/var/www/vip_cs,/var/www/wpcs;
 
-#WP-CLI
+# WP-CLI
 COPY wp-su.sh /usr/local/bin/wp
 RUN	curl -o /usr/local/bin/wp-cli.phar https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar; \
 	chmod a+x /usr/local/bin/wp-cli.phar; \
@@ -47,6 +47,15 @@ RUN	curl -o /usr/local/bin/wp-cli.phar https://raw.githubusercontent.com/wp-cli/
 		echo '  - mod_rewrite'; \
 	} > /var/www/wp-cli.yml
 
+
+# XDebug
+RUN cd /var/www; \
+	git clone https://github.com/xdebug/xdebug.git;
+RUN	cd /var/www/xdebug; \
+	phpize;
+RUN /var/www/xdebug/./configure --enable-xdebug; \
+	make; \
+	make install;
 
 ### ToDo FUTURO: Install Xdebug manual
 
