@@ -49,3 +49,9 @@ services:
       - 8080:80
     volumes:
       - /sessions
+  mailhog:
+    container_name: mailhog
+    image: mailhog/mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"

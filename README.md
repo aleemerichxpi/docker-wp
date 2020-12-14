@@ -112,7 +112,9 @@ Para debugar o PHP do container do Worpress no VSCode dentro do seu Windows, é 
     ]
 ````
 
-**Atenção:** As confgurações do XDebug que estão neste projeto são configurações para a versão 3.0 do Xdebug (vide arquivos em `docker-image/docker-entrypoint.sh`. Versões anteriores possuem configurações totamente diferentes e são as mais encontradas na internet. Se precisar, faça uma pesquisa no Google para vê-las.
+**Atenção:** 
+1. As confgurações do XDebug que estão neste projeto são configurações para a versão 3.0 do Xdebug (vide arquivos em `docker-image/docker-entrypoint.sh`. Versões anteriores possuem configurações totamente diferentes e são as mais encontradas na internet. Se precisar, faça uma pesquisa no Google para vê-las.
+2. Se você não quiser usar o XDebug em seu ambiente, basta acessar o arquivo `docker-image/docker-entrypoint.sh` e alterar a variável de ambiente `XDEBUG=true` para `XDEBUG=false`
 
 O principal ponto neste arquivo é a configuraçao `pathMappings`. Nela você precisa ter certeza de apontar o local onde os arquivos PHP estão, tanto no container, quanto na sua máquina (isso é totalmente vinculado com "volumes"). *Lembre-se*, se a pasta raiz do projeto for a pasta onde você clonou o projeto, então o path de exemplo servirá, caso contrário será preciso ajustar o path do exemplo acima para que coincida com a pasta onde estão os arquivos na sua máquina Windows.
 
