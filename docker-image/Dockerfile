@@ -26,17 +26,21 @@ RUN git config --global user.name "WP-DOCKER-PACKAGE Project"; \
 # PHPCS
 RUN cd /var/www; \
 	git clone https://github.com/squizlabs/PHP_CodeSniffer.git phpcs;
+RUN	cd /var/www/phpcs; \
+	git pull;
 COPY analysis.zip /var/www/analysis.zip
 COPY phpcsutils.zip /var/www/phpcsutils.zip
+COPY php_compatibility.zip /var/www/phpcompatibility.zip
 COPY vip_cs.zip /var/www/vip_cs.zip
 COPY wpcs.zip /var/www/wpcs.zip
 RUN cd /var/www; \
 	unzip analysis.zip; \
-	unzip phpcsutils.zip; \
+	unzip phpcsutils.zip; \ 
+	unzip phpcompatibility.zip; \
 	unzip vip_cs.zip; \
 	unzip wpcs.zip; 
 RUN	echo 'alias phpcs="php /var/www/phpcs/bin/phpcs"' >> ~/.bashrc;
-RUN	php /var/www/phpcs/bin/phpcs --config-set installed_paths /var/www/phpcs,/var/www/analysis,/var/www/phpcsutils,/var/www/vip_cs,/var/www/wpcs;
+RUN	php /var/www/phpcs/bin/phpcs --config-set installed_paths /var/www/phpcs,/var/www/analysis,/var/www/phpcsutils,/var/www/PHPCompatibility,/var/www/vip_cs,/var/www/wpcs;
 
 # WP-CLI
 COPY wp-su.sh /usr/local/bin/wp
