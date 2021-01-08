@@ -7,6 +7,7 @@ services:
       dockerfile: Dockerfile
     links:
       - database:mysql
+      - memcached:memcached
     environment:
       - WORDPRESS_DB_USER=wordpress
       - WORDPRESS_DB_NAME=wordpress
@@ -38,7 +39,6 @@ services:
   phpmyadmin:
     container_name: phpmyadmin
     image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
     environment:
       - PMA_ARBITRARY=1
       - PMA_HOST=mysql
@@ -55,3 +55,6 @@ services:
     ports:
       - "1025:1025"
       - "8025:8025"
+  memcached:
+    container_name: memcached
+    image: 'bitnami/memcached:latest'

@@ -10,6 +10,7 @@ RUN set -ex;\
 		sudo \
 		subversion \
 		unzip \
+		vim \
 	; \
 	apt-get install -y \
 		--no-install-recommends ssl-cert \
@@ -51,6 +52,15 @@ RUN	curl -o /usr/local/bin/wp-cli.phar https://raw.githubusercontent.com/wp-cli/
 		echo '  - mod_rewrite'; \
 	} > /var/www/wp-cli.yml
 
+# Memcached extension (https://pecl.php.net/package/memcache)
+COPY memcache-8.0.zip /var/www/memcache.zip
+RUN cd /var/www; \
+	unzip memcache.zip; \
+	cd /var/www/memcache-8.0; \
+	phpize; \
+	./configure; \
+	make; \
+	make install;
 
 # XDebug
 RUN cd /var/www; \

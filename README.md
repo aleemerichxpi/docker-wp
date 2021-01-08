@@ -13,8 +13,10 @@ Neste ambiente você vai encontrar:
 1.4 Biblioteca `WP-Cli` ativa e funcional
 1.5 Ferramenta de análise de vulnerabilidade `PHPCS`
 1.6 Ferramenta `Xdbug` já configurada
+1.7 Biblioteca PHP `memcached extension` para uso Memcached (https://pecl.php.net/package/memcache)
 2. Um servidor de banco de dados `MySQL`
 3. Um servidor web rodando `PHPMyAdmin` em sua última versão
+4. Um servidor `Mencached` para testes e usos de recurso de cache permanente no WordPress (http://danga.com/memcached)
 4. Um servidor com uma ferramenta de intercepção de e-mail chamada `MailHog` (esta ferramenta interceptará todos os e-mails disparados pelo servidor para que você veja tudo o que seu servidor dispara).
 5. Scripts para criar backups do banco de dados e restarações de outras bases.
 
@@ -22,7 +24,7 @@ Neste ambiente você vai encontrar:
 - Este projeto permite você rodar apenas *uma* (01) aplicação Wordpress. Para trabalhar com várias, é perciso criar um repositório para cada (cabe ver se é viável).
 - Está é uma ferramenta para desenvolvimento, **não é recomendado** usar este ambiente para criação de um *ambiente de produção*. 
 - Obviamente, é necessário que você tenha do Docker previmente configurado em sua máquina.
-
+- Se você quiser configurar o Memcached e saber mais como usar cache, consulte a referência direta do Wordpress em https://developer.wordpress.org/reference/classes/wp_object_cache/
 ## Como criar seu ambiente
 Clone o repositório do GitHub
 ````sh
