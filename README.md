@@ -1,6 +1,10 @@
 # Ambiente para desenvolemento em Wordpress
 Este é um projeto pessoal para estudo e que tem como objetivo criar um ambiente totalmente automatizado para desenvolvimento Wordpress com uso de Docker e outras ferramentas de automação fortemente usadas no mercado.
 
+# Premissas
+- Você precisa ter o Docker instalado em sua máquina.
+- Você também vai precisar do Python instalado para rodar algumas automações.
+
 # Visão geral
 
 Este projeto é baseado no projeto de [Felipe Elia](https://github.com/felipeelia/docker-base-env) e tem por objetivo criar, através de um arranjo de scripts, Dockerfile, Docker-compose e estruturas de pastas, um ambiente completo de desenvolvimento para Wordpress, na sua versão mais recente. Além disso, será agregado algumas ferramentas de extrema importância para desenvolvedores em geral.
@@ -23,7 +27,6 @@ Neste ambiente você vai encontrar:
 **Lembre-se:** 
 - Este projeto permite você rodar apenas *uma* (01) aplicação Wordpress. Para trabalhar com várias, é perciso criar um repositório para cada (cabe ver se é viável).
 - Está é uma ferramenta para desenvolvimento, **não é recomendado** usar este ambiente para criação de um *ambiente de produção*. 
-- Obviamente, é necessário que você tenha do Docker previmente configurado em sua máquina.
 - Se você quiser configurar o Memcached e saber mais como usar cache, consulte a referência direta do Wordpress em https://developer.wordpress.org/reference/classes/wp_object_cache/
 ## Como criar seu ambiente
 Clone o repositório do GitHub
