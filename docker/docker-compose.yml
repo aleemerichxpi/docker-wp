@@ -18,6 +18,7 @@ services:
     restart: unless-stopped
     ports:
       - "80:80"
+      - "443:443"
     working_dir: /var/www/html
     volumes:
       - ../wordpress:/var/www/html
