@@ -47,13 +47,17 @@ RUN	echo 'alias phpunit="php /var/www/phpunit-nightly.phar"' >> ~/.bashrc;
 RUN	php /var/www/phpcs/bin/phpcs --config-set installed_paths /var/www/phpcs,/var/www/analysis,/var/www/phpcsutils,/var/www/PHPCompatibility,/var/www/vip_cs,/var/www/wpcs;
 
 # WP-CLI
+
 COPY wp-su.sh /usr/local/bin/wp
-RUN	curl -o /usr/local/bin/wp-cli.phar https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar; \
-	chmod a+x /usr/local/bin/wp-cli.phar; \
-	{ \
+COPY wp-cli.zip /usr/local/bin/wp-cli.zip
+RUN  cd /usr/local/bin; \
+	 unzip wp-cli.zip; \
+	 chmod a+x /usr/local/bin/wp-cli.phar; \
+	 { \
 		echo 'apache_modules:'; \
 		echo '  - mod_rewrite'; \
-	} > /var/www/wp-cli.yml
+	 } > /var/www/wp-cli.yml; \
+	 wp;
 
 # Memcached extension (https://pecl.php.net/package/memcache)
 COPY memcache-8.0.zip /var/www/memcache.zip
@@ -73,8 +77,6 @@ RUN	cd /var/www/xdebug; \
 RUN /var/www/xdebug/./configure --enable-xdebug; \
 	make; \
 	make install;
-
-### ToDo FUTURO: Install Xdebug manual
 
 ### ToDo FUTURO: Node + libraries + Gulp
 
