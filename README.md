@@ -21,7 +21,6 @@ Neste ambiente você vai encontrar:
 2. Um servidor de banco de dados `MySQL`
 3. Um servidor web rodando `PHPMyAdmin` em sua última versão
 4. Um servidor `Mencached` para testes e usos de recurso de cache permanente no WordPress (http://danga.com/memcached)
-4. Um servidor com uma ferramenta de intercepção de e-mail chamada `MailHog` (esta ferramenta interceptará todos os e-mails disparados pelo servidor para que você veja tudo o que seu servidor dispara).
 5. Scripts para criar backups do banco de dados e restarações de outras bases.
 
 **Lembre-se:** 
@@ -50,10 +49,7 @@ Assim que o ambiente estiver funcional, basta acessar `http://localhost` para in
 - Senha: **password**
 - Servidor do banco de dados: **mysql**
 - Prefixo: *fica a seu critério* (padrão: *wp*)
-
-As seguinte URL também ficarão disponíveis:
-- PHPMyAdmin: http://localhost:8080/
-- MailHog: http://localhost:8025/
+- Para acessar o PHPMyAdmin, use http://localhost:8080/
 
 #### As próximas execuções
 Nas próximas vezes que for subir seu ambiente, basta acessar a basta 'docker/' e usar o comando
@@ -79,11 +75,6 @@ Se qusier criar apenas essa imagem (se utilizar todos os serviços do Docker Com
 cd /docker-image
 docker build -t <nome da imagem que quiser dar> -f .\Dockerfile .
 ````
-
-
-##### MailHog
-- Servidor configurado em `http://localhost:8025`
-- Para funcionar corretamente, mantenha o arquivo `docker/dev.ini`.
 
 ##### PHPMyAdmin
 - Servidor configurado em `http://localhost:8080`
