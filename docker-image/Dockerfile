@@ -34,13 +34,16 @@ COPY phpcsutils.zip /var/www/phpcsutils.zip
 COPY php_compatibility.zip /var/www/phpcompatibility.zip
 COPY vip_cs.zip /var/www/vip_cs.zip
 COPY wpcs.zip /var/www/wpcs.zip
+COPY phpunit.zip /var/www/phpunit.zip
 RUN cd /var/www; \
 	unzip analysis.zip; \
 	unzip phpcsutils.zip; \ 
 	unzip phpcompatibility.zip; \
 	unzip vip_cs.zip; \
-	unzip wpcs.zip; 
+	unzip wpcs.zip; \
+	unzip phpunit.zip;
 RUN	echo 'alias phpcs="php /var/www/phpcs/bin/phpcs"' >> ~/.bashrc;
+RUN	echo 'alias phpunit="php /var/www/phpunit-nightly.phar"' >> ~/.bashrc;
 RUN	php /var/www/phpcs/bin/phpcs --config-set installed_paths /var/www/phpcs,/var/www/analysis,/var/www/phpcsutils,/var/www/PHPCompatibility,/var/www/vip_cs,/var/www/wpcs;
 
 # WP-CLI
