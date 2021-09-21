@@ -22,6 +22,7 @@ RUN set -ex;\
 
 # Git config
 RUN git config --global user.name "WP-DOCKER-PACKAGE Project"; \
+	git config --global http.sslVerify false; \
 	git config --global user.email "temp@temp.com";
 
 # PHPCS
