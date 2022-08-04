@@ -58,7 +58,24 @@ docker-compose up
 ````
 Volta a usar o parâmetro `--build` se fizer qualquer alteração nos arquivos do Docker ou .sh usados dentro de `docker/` ou `docker-image/`.
 
-## Fique atento 
+## Certificado SSH (HTTPS)
+
+Esse projeto possui dois arquivos de certificado SSH: `mycert.key` e `mycert.ctr`. Este é apenas um demo dos arquivos e você precisa trocar esses arquivos por arquivos válidos. Se você estiver usando isso em uma empresa, converse com sua equipe para obter um certificado válido. Se estiver trabalhando por conta, uma ideia é utilizar o [Let's Encrypt](https://letsencrypt.org/).
+
+Caso você não precise configurar seu ambiente com um SSH válido (emitido por uma empresa de certificação válida). Entre no Dockerfile (`docker-image\Dockerfile`) e comente/retire a seguinte as seguintes linhas:
+
+```
+# SSL
+COPY mycert.key /etc/ssl/private/mycert.key
+COPY mycert.crt /etc/ssl/certs/mycert.crt
+RUN sed -i '/SSLCertificateFile.*snakeoil\.pem/c\SSLCertificateFile \/etc\/ssl\/certs\/mycert.crt' /etc/apache2/sites-available/default-ssl.conf;
+RUN sed -i '/SSLCertificateKeyFile.*snakeoil\.key/cSSLCertificateKeyFile /etc/ssl/private/mycert.key\' /etc/apache2/sites-available/default-ssl.conf;
+RUN a2ensite default-ssl;
+```
+
+Você ainda conseguirá acessar a sua URL com HTTP://<domínio>, mas o certificado que ficará disponível será inválido para navegadores como o Chrome dado que ele é autoassinado. 
+
+## Fique atento a outros pontos
 - Seu desenvolvimento deve se concentrar dentro da pasta `wordpress/`, mas este projeto não versiona a pasta `wordpress/`, logo usar o git deste projeto **não** versionará nada que fizer em `wordpress/`. *Dica:* crie um projeto git para seu plugin e/ou tema e trate como um projeto extra, com pull e push próprios.
 - Se for usar plugins de terceiros, é preciso fazer a instalação inicial apenas, depois esses plugins ficarão dentro da estrutura Wordpress contida em `wordpress/`. Porém, *se acontecer algo ao seu micro e a pasta `wordpress` se perder*, você terá que possivelmente refazer a instalação dos plugins ou ao menos voltar os arquivos perdidos.
 - Caso precise definir novas confogurações para o PHP, edite o arquivo `docker/dev.ini`.

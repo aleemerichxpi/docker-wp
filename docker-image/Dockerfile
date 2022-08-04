@@ -1,4 +1,4 @@
-FROM wordpress:latest
+FROM wordpress:php8.0
 
 # Install the PHP extensions we need
 RUN set -ex;\
@@ -89,6 +89,13 @@ RUN usermod --non-unique --uid 1000 www-data \
   && groupmod --non-unique --gid 1000 www-data \
   && chown -R www-data:www-data /var/www
 EXPOSE 80 443
+
+# SSL
+COPY mycert.key /etc/ssl/private/mycert.key
+COPY mycert.crt /etc/ssl/certs/mycert.crt
+RUN sed -i '/SSLCertificateFile.*snakeoil\.pem/c\SSLCertificateFile \/etc\/ssl\/certs\/mycert.crt' /etc/apache2/sites-available/default-ssl.conf;
+RUN sed -i '/SSLCertificateKeyFile.*snakeoil\.key/cSSLCertificateKeyFile /etc/ssl/private/mycert.key\' /etc/apache2/sites-available/default-ssl.conf;
+RUN a2ensite default-ssl;
 
 # Overrides wp docker default entrypoint
 COPY docker-entrypoint.sh /entrypoint.sh
