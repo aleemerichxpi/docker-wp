@@ -50,6 +50,7 @@ RUN	php /var/www/phpcs/bin/phpcs --config-set installed_paths /var/www/phpcs,/va
 # WP-CLI
 
 COPY wp-su.sh /usr/local/bin/wp
+RUN chmod +x /usr/local/bin/wp
 COPY wp-cli.zip /usr/local/bin/wp-cli.zip
 RUN  cd /usr/local/bin; \
 	 unzip wp-cli.zip; \
@@ -99,6 +100,7 @@ RUN a2ensite default-ssl;
 
 # Overrides wp docker default entrypoint
 COPY docker-entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
 CMD ["apache2-foreground"]
