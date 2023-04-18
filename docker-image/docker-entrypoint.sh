@@ -71,7 +71,7 @@ then
         {
             echo "[Xdebug]";
             echo "zend_extension=${extfile}";
-            echo "xdebug.mode=debug";
+            echo "xdebug.mode=debug,coverage";
             echo "xdebug.start_with_request=yes";
             echo "xdebug.client_port=9003";
             echo "xdebug.client_host=host.docker.internal";
