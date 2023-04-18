@@ -11,13 +11,15 @@ Este projeto é baseado no projeto de [Felipe Elia](https://github.com/felipeeli
 
 Neste ambiente você vai encontrar:
 1. Um servidor web `Apache` com:
-1.1 Um `Dockerfile` para você alterar os detalhes de seu ambiente Wordpress caso deseje
-1.2 `Wordpress` em sua última versão
-1.3 Executando `PHP 7.4`
-1.4 Biblioteca `WP-Cli` ativa e funcional
-1.5 Ferramenta de análise de vulnerabilidade `PHPCS`
-1.6 Ferramenta `Xdbug` já configurada
-1.7 Biblioteca PHP `memcached extension` para uso Memcached (https://pecl.php.net/package/memcache)
+    - Um `Dockerfile` para você alterar os detalhes de seu ambiente Wordpress caso deseje
+    - `Wordpress` em sua última versão
+    - Executando `PHP 8.0`
+    - Biblioteca `WP-Cli` ativa e funcional
+    - Ferramenta de análise de vulnerabilidade `PHPCS`
+    - Ferramenta de teste `PHPUnit` funcional
+    - Ferramenta `Composer` funcional
+    - Ferramenta `Xdbug` já configurada
+    - Biblioteca PHP `memcached extension` para uso Memcached (https://pecl.php.net/package/memcache)
 2. Um servidor de banco de dados `MySQL`
 3. Um servidor web rodando `PHPMyAdmin` em sua última versão
 4. Um servidor `Mencached` para testes e usos de recurso de cache permanente no WordPress (http://danga.com/memcached)
@@ -134,6 +136,7 @@ O principal ponto neste arquivo é a configuraçao `pathMappings`. Nela você pr
 
 
 ## Próximos passos
+- Com a mudança para o PHP 8 e WordPress acima da versão 6.0, o Mencahed deixou de funcionar em alguns locais, é preciso sanar isso o quanto antes.
 - Incorporar condição para configurar Wordpress na versão WPVIP
 - Incorporar ferramentas para automação de testes PHP e Wordpress
 - Tentar usar o recurso de multisite do Wordpress para ver se funciona
