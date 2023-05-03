@@ -30,6 +30,11 @@ Neste ambiente você vai encontrar:
 - Está é uma ferramenta para desenvolvimento, **não é recomendado** usar este ambiente para criação de um *ambiente de produção*. 
 - Se você quiser configurar o Memcached e saber mais como usar cache, consulte a referência direta do Wordpress em https://developer.wordpress.org/reference/classes/wp_object_cache/
 ## Como criar seu ambiente
+
+Antes de clonar seu repositório, é importante que você indique ao GIT que NÃO CONVERTA automaticamente arquivos com quebras de linha LF em CRLF. Isso acontece quando você está rodando seu ambiente em Windows (se for Linux, você pode pular essa etapa). Se quiser entender melhor, [veja esse link do StackOverFlow](https://stackoverflow.com/questions/1967370/git-replacing-lf-with-crlf). Para isso, execute o seguinte comando:
+````sh
+git config --global core.autocrlf false
+````
 Clone o repositório do GitHub
 ````sh
 git clone https://github.com/aleemerichxpi/docker-wp.git
