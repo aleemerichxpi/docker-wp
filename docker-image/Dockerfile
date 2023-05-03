@@ -55,13 +55,13 @@ COPY wp-su.sh /usr/local/bin/wp
 RUN chmod +x /usr/local/bin/wp
 COPY wp-cli.zip /usr/local/bin/wp-cli.zip
 RUN  cd /usr/local/bin; \
-	 unzip wp-cli.zip; \
-	 chmod a+x /usr/local/bin/wp-cli.phar; \
-	 { \
+	 unzip /usr/local/bin/wp-cli.zip
+RUN	 chmod a+x /usr/local/bin/wp-cli.phar
+RUN	 { \
 		echo 'apache_modules:'; \
 		echo '  - mod_rewrite'; \
-	 } > /var/www/wp-cli.yml; \
-	 wp;
+	 } > /var/www/wp-cli.yml 
+RUN	 wp;
 
 # Memcached extension (https://pecl.php.net/package/memcache)
 COPY memcache-8.0.zip /var/www/memcache.zip
